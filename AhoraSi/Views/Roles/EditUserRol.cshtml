@@ -1,0 +1,30 @@
+﻿@model List<AhoraSi.Models.ViewModels.UserRoles>
+
+@{
+    var rolId = ViewBag.rolId;
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+
+<form method="post">
+    <div class="card">
+        <div class="card-header">
+            <h2> Add or  Delete user to this role</h2>
+        </div>
+        <div class="card-body">
+            @for (int i = 0; i < Model.Count; i++)
+            {
+                <div class="form-check m1">
+                    <input type="hidden" asp-for="@Model[i].UserId" />
+                    <input type="hidden" asp-for="@Model[i].UserName" />
+                    <input asp-for="@Model[i].IsChecked" class="form-check-input" />
+                    <label class="form-check-label" asp-for="@Model[i].IsChecked">@Model[i].UserName</label>
+                </div>
+            }
+        </div>
+        <div class="card-footer">
+            <input type="submit" value="Save Changes" class="btn btn-primary" style="width:auto" />
+            <a asp-action="RoleEdit" asp-route-id="@rolId" class="btn btn-danger" style="width:auto">Cancel</a>
+        </div>
+    </div>
+</form>

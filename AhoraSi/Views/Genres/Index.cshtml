@@ -1,0 +1,28 @@
+﻿@model IEnumerable<AhoraSi.Models.Genre>
+
+@{
+    ViewData["Title"] = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h1>Index</h1>
+<p>
+    <a class="btn btn-success" style="width:auto" asp-action="Create">Create New Genre</a>
+</p>
+
+<div class="card-deck">
+    @foreach (var genre in Model)
+    {
+        var imagePath = "~/image/" + (genre.Image);
+        <div class="card m-3" style="min-width: 300px; max-width: 300px">
+            <div class="card-header">
+                <h3 style="text-align:center">@genre.Name</h3>
+            </div>
+            <img class="card-img-top image" style="max-height:250px;min-height:250px" src="@imagePath" asp-append-version="true" />
+            <div class="card-footer text-center">
+                <a asp-action="Edit" asp-route-id="@genre.Id" class="btn btn-success">Edit</a> |
+                <a asp-action="Delete" asp-route-id="@genre.Id" class=" btn btn-danger">Delete</a>
+            </div>
+        </div>
+    }
+</div>
